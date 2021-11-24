@@ -24,28 +24,28 @@ export default class RegisterPage {
         return cy.get(`select[formcontrolname=${name}]`);
     }
 
-    registerNew(firstName, lastName, email, password, passwordConfirmation, telephone, id, city, address, postalcode, terms){
+    registerNew(element){
         cy.wait(3000);
-        firstName
-            ?this.getInputField('text').eq(0).type(firstName)
+        element.firstName
+            ?this.getInputField('text').eq(0).type(element.firstName)
             :this.getInputField('text').eq(0).clear();
-        this.getInputField('text').eq(1).type(lastName);
-        this.getInputField('email').type(email);
-        this.getInputField('password').eq(0).type(password);
-        this.getInputField('password').eq(1).type(passwordConfirmation);
+        this.getInputField('text').eq(1).type(element.lastName);
+        this.getInputField('email').type(element.email);
+        this.getInputField('password').eq(0).type(element.password);
+        this.getInputField('password').eq(1).type(element.passwordConfirmation);
         this.getInputFieldDate('stateSelect').select('Srbija');
-        this.getInputField('tel').type(telephone);
-        this.getInputField('text').eq(2).type(id);
+        this.getInputField('tel').type(element.telephone);
+        this.getInputField('text').eq(2).type(element.id);
         this.getInputFieldDate('yearDateSelect').select('1996', { force: true });
         this.getInputFieldDate('monthDateSelect').select('January', { force: true });
         this.getInputFieldDate('dayDateSelect').select('14', { force: true });
         this.getAdditionalInfo('currency').select('Dinar');
-        this.getInputField('text').eq(3).type(city);
-        this.getInputField('text').eq(4).type(address);
-        this.getInputField('text').eq(5).type(postalcode);
+        this.getInputField('text').eq(3).type(element.city);
+        this.getInputField('text').eq(4).type(element.address);
+        this.getInputField('text').eq(5).type(element.postalCode);
         this.getInputField('checkbox').eq(1).check();
-        terms
-            ?this.getInputField('checkbox').eq(2).check({force:true})
+        element.terms
+            ?this.getInputField('checkbox').eq(2).check()
             :this.getInputField('checkbox').eq(2).uncheck();
         this.registerPageButton.click();
     }
