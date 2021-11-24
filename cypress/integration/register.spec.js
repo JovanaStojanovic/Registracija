@@ -1,11 +1,11 @@
 ///<reference types="Cypress" />
 
-import RegisterPage, {registerPage} from './../page_objects/registerPage';
-const userDataRegister =require('/Users/jovanastojanovic/Desktop/cypress/cypress/fixtures/dataRegister.json');
+import {registerPage} from './../page_objects/registerPage';
+const userDataRegister =require('../fixtures/dataRegister.json');
 
 describe("register tests", () => {
     beforeEach("visit register page", () => {
-        cy.visit("https://stagebertavvf.meridianbet.com/en/sign-up");
+        cy.visit("/sign-up");
     });
 
     userDataRegister.forEach((element)=>{
